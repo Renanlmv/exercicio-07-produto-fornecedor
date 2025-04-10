@@ -32,7 +32,7 @@ public class Util {
                     pesquisarProduto();
                     break;
                 case 3:
-                    pesquisarFornecedor();
+                    pesquisar();
                     break;
                 default:
                     showMessageDialog(null, "Opção inválida");
@@ -92,11 +92,20 @@ public class Util {
         long cnpj = parseLong(showInputDialog("Digite o CNPJ do fornecedor:"));
         for (int i = 0; i < idxFornecedor; i++) {
             if (cnpj == fornecedor[i].getCnpj()) {
-                showMessageDialog(null, "Fornecedor: " + fornecedor[i].getNome());
                 return fornecedor[i];
             }
         }
         showMessageDialog(null, "Fornecedor não cadastrado!");
         return null;
+    }
+
+    private void pesquisar() {
+        String aux = "";
+        Fornecedor fornecedor = pesquisarFornecedor();
+        if (fornecedor != null) {
+           aux += "Fornecedor: " + fornecedor.getNome() + "\n";
+           aux += "CNPJ: " + fornecedor.getCnpj() + "\n";
+           showMessageDialog(null, aux);
+        }
     }
 }
